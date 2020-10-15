@@ -28,7 +28,7 @@ router.post("/login", async (req, res, next) => {
       },
     });
 
-    console.log("user", password);
+    // console.log("user", password);
 
     if (!user || !bcrypt.compareSync(password, user.password)) {
       return res.status(400).send({
@@ -80,15 +80,18 @@ router.post("/signup", async (req, res) => {
 // The /me endpoint can be used to:
 // - get the users email & name using only their token
 // - checking if a token is (still) valid
-// router.get("/me", authMiddleware, async (req, res) => {
-//   const homepage = await Homepage.findOne({
-//     where: { userId: req.user.id },
-//     include: [Story],
-//     order: [[Story, "createdAt", "DESC"]],
-//   });
-// don't send back the password hash
-//   delete req.user.dataValues["password"];
-//   res.status(200).send({ ...req.user.dataValues, homepage });
-// });
+router.get("/me", authMiddleware, async (req, res) => {
+  const compositions = await Compositions.findAll({
+    where: { userId: req.user.id },
+  });
+
+  // don't send back the password hash
+  delete req.user.dataValues["password"];
+  res.status(200).send({
+    ...req.user.dataValues,
+    compositions,
+  });
+  console.log("req user", req.user);
+});
 
 module.exports = router;

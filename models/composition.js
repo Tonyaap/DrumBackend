@@ -15,6 +15,7 @@ module.exports = (sequelize, DataTypes) => {
   compositions.init(
     {
       userId: DataTypes.INTEGER,
+      compositionName: DataTypes.STRING,
       kick: DataTypes.ARRAY(DataTypes.DECIMAL),
       snare: DataTypes.ARRAY(DataTypes.DECIMAL),
       clap: DataTypes.ARRAY(DataTypes.DECIMAL),

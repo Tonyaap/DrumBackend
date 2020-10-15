@@ -15,6 +15,10 @@ module.exports = {
         type: Sequelize.INTEGER,
         allowNull: false,
       },
+      compositionName: {
+        type: Sequelize.STRING,
+        allowNull: true,
+      },
       kick: {
         type: Sequelize.ARRAY(Sequelize.DECIMAL),
       },

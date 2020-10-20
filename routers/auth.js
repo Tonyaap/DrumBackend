@@ -4,7 +4,6 @@ const { toJWT } = require("../auth/jwt");
 const authMiddleware = require("../auth/middleware");
 const User = require("../models/").users;
 const Compositions = require("../models").compositions;
-const Story = require("../models/").story;
 
 const { SALT_ROUNDS } = require("../config/constants");
 

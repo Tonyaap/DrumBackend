@@ -23,7 +23,7 @@ router.post("/:id", async (req, res, next) => {
 
     const { compositionName, composition } = req.body;
 
-    console.log("REQbODY!", req.body);
+    console.log("composition.kick!", composition.kick);
 
     if (!id) {
       res.status(404).send("User not found");
@@ -31,7 +31,7 @@ router.post("/:id", async (req, res, next) => {
       const newComposition = await compositions.create({
         userId: id,
         compositionName,
-        composition,
+        ...composition,
       });
 
       res.json({ newComposition });

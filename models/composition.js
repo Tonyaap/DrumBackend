@@ -18,7 +18,6 @@ module.exports = (sequelize, DataTypes) => {
       compositionName: DataTypes.STRING,
       kick: DataTypes.ARRAY(DataTypes.DECIMAL),
       snare: DataTypes.ARRAY(DataTypes.DECIMAL),
-      clap: DataTypes.ARRAY(DataTypes.DECIMAL),
       closedhat: DataTypes.ARRAY(DataTypes.DECIMAL),
       openhat: DataTypes.ARRAY(DataTypes.DECIMAL),
       hitom: DataTypes.ARRAY(DataTypes.DECIMAL),

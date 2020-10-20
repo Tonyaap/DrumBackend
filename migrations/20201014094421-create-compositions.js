@@ -29,9 +29,6 @@ module.exports = {
       snare: {
         type: Sequelize.ARRAY(Sequelize.DECIMAL),
       },
-      clap: {
-        type: Sequelize.ARRAY(Sequelize.DECIMAL),
-      },
       closedhat: {
         type: Sequelize.ARRAY(Sequelize.DECIMAL),
       },

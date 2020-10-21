@@ -16,17 +16,15 @@ router.get("/", async (req, res, next) => {
 router.post("/:id", async (req, res, next) => {
   console.log("HELLO ARE YOU THERE?");
   try {
-    // const loggedinId = parseInt(req.body.userId);
     const { id } = req.params;
-
-    // const foundUser = await User.findByPk(loggedinId);
 
     const { compositionName, composition } = req.body;
 
-    console.log("composition.kick!", composition.kick);
-
-    if (!id) {
-      res.status(404).send("User not found");
+    if (compositionName === "") {
+      console.log("test");
+      return res.status(404).send({
+        message: "Please give your beat a name",
+      });
     } else {
       const newComposition = await compositions.create({
         userId: id,
@@ -37,39 +35,12 @@ router.post("/:id", async (req, res, next) => {
       res.json({ newComposition });
     }
   } catch (e) {
+    if (e.name === "SequelizeUniqueConstraintError") {
+      return res.status(404).send({ message: "This name allready exists" });
+    }
     console.log("error", e);
     next(e);
   }
 });
 
-// router.delete("/:id", auth, async (req, res, next) => {
-//   try {
-//     const reservationId = req.params.id;
-//     const reservationToDelete = await reservations.findByPk(reservationId);
-
-//     await reservationToDelete.destroy();
-//     res.send("reservation Deleted");
-//   } catch (e) {
-//     next(e);
-//   }
-// });
-
-// router.post("/:id", auth, async (req, res) => {
-//   const newComposition = await compositions.findById(req.params.id);
-
-//   if (newComposition === null) {
-//     return res.status(404).send({ message: "Doesn't Exist" });
-//   }
-
-//   const { userId, compositionName } = req.body;
-
-//   if (!compositionName) {
-//     return res.status(400).send({ message: "Composition must have a name" });
-//   }
-
-//   if (!userId) {
-//     return res
-//       .status(400)
-//       .send({ message: "must be logged in to save composition" });
-//   }
 module.exports = router;

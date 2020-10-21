@@ -21,6 +21,7 @@ module.exports = {
       },
       compositionName: {
         type: Sequelize.STRING,
+        unique: true,
         allowNull: true,
       },
       kick: {
